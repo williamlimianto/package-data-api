@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
+from core import models
 
 class ModelTests(TestCase):
 
@@ -30,3 +31,13 @@ class ModelTests(TestCase):
 
         self.assertEqual(user.username, username)
         self.assertTrue(user.check_password(password))
+
+    def test_location_str(self):
+        """Test the location string representation"""
+        location = models.Location.objects.create(
+            name='Hub Jakarta Selatan',
+            code='JKTS01',
+            type='Agent'
+        )
+
+        self.assertEqual(str(location), location.name)
