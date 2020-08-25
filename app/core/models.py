@@ -3,6 +3,7 @@ import uuid
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
                                         PermissionsMixin
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class UserManager(BaseUserManager):
@@ -56,3 +57,27 @@ class Organization(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Destination(models.Model):
+    """Destination to be used for package data"""
+    customer_name = models.CharField(max_length=100)
+    customer_address = models.CharField(max_length=255)
+    customer_email = models.EmailField(max_length=255)
+    customer_phone = PhoneNumberField()
+    customer_address_detail = models.CharField(max_length=255, null=True,
+                                               blank=True)
+    customer_zip_code = models.CharField(max_length=5)
+    zone_code = models.CharField(max_length=5)
+    organization = models.ForeignKey(
+        Organization,
+        on_delete=models.CASCADE,
+    )
+    location = models.ForeignKey(
+        Location,
+        on_delete=models.CASCADE,
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.customer_name + ' - ' + self.customer_address

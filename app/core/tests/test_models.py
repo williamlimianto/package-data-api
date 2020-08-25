@@ -4,6 +4,16 @@ from django.contrib.auth import get_user_model
 from core import models
 
 
+def sample_organization(name='Organization A'):
+    """Create a sample organization"""
+    return models.Organization.objects.create(name=name)
+
+
+def sample_location(name='Hub Jakarta Selatan', code='JKTS01', type='Agent'):
+    """Create a sample location"""
+    return models.Location.objects.create(name=name, code=code, type=type)
+
+
 class ModelTests(TestCase):
 
     def test_create_user(self):
@@ -50,3 +60,21 @@ class ModelTests(TestCase):
         )
 
         self.assertEqual(str(organization), organization.name)
+
+    def test_destination_str(self):
+        """Test the destination string representation"""
+        destination = models.Destination.objects.create(
+            customer_name='PT. NARA OKA PRAKARSA',
+            customer_address='JL. KH. AHMAD DAHLAN NO. 100, SEMARANG '
+                             'TENGAH 12420',
+            customer_email='info@naraoka.co.id',
+            customer_phone="024-1234567",
+            customer_address_detail=None,
+            customer_zip_code="12420",
+            zone_code="CGKFT",
+            organization=sample_organization(),
+            location=sample_location()
+        )
+
+        self.assertEqual(str(destination), destination.customer_name + ' - '
+                         + destination.customer_address)
