@@ -42,3 +42,11 @@ class ModelTests(TestCase):
         )
 
         self.assertEqual(str(location), location.name)
+
+    def test_organization_str(self):
+        """Test the organization string representation"""
+        organization = models.Organization.objects.create(
+            name='Organization A'
+        )
+
+        self.assertEqual(str(organization), organization.name)

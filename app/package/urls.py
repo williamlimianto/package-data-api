@@ -5,6 +5,7 @@ from package import views
 
 router = DefaultRouter()
 router.register('locations', views.LocationViewSet)
+router.register('organizations', views.OrganizationViewSet)
 
 app_name = 'package'
 

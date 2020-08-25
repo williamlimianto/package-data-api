@@ -1,6 +1,6 @@
 from rest_framework import viewsets, mixins
 
-from core.models import Location
+from core.models import Location, Organization
 
 from package import serializers
 
@@ -14,4 +14,16 @@ class LocationViewSet(viewsets.GenericViewSet,
 
     def perform_create(self, serializer):
         """"Create a new location"""
+        serializer.save()
+
+
+class OrganizationViewSet(viewsets.GenericViewSet,
+                          mixins.ListModelMixin,
+                          mixins.CreateModelMixin):
+    """Manage organizations in the database"""
+    queryset = Organization.objects.all()
+    serializer_class = serializers.OrganizationSerializer
+
+    def perform_create(self, serializer):
+        """"Create a new organization"""
         serializer.save()
