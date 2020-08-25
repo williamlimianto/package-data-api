@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 
 from core import models
 
+
 class ModelTests(TestCase):
 
     def test_create_user(self):
