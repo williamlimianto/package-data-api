@@ -8,5 +8,5 @@ class LocationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Location
-        fields = ('id', 'name', 'code', 'type', 'created_at', 'updated_at')
-        read_only_fields = ('id', 'created_at', 'updated_at')
+        fields = ('id', 'name', 'code', 'type', 'created_at')
+        read_only_fields = ('id', 'created_at')
