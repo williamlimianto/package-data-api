@@ -61,9 +61,9 @@ class ModelTests(TestCase):
 
         self.assertEqual(str(organization), organization.name)
 
-    def test_destination_str(self):
-        """Test the destination string representation"""
-        destination = models.Destination.objects.create(
+    def test_customer_str(self):
+        """Test the customer string representation"""
+        customer = models.Customer.objects.create(
             customer_name='PT. NARA OKA PRAKARSA',
             customer_address='JL. KH. AHMAD DAHLAN NO. 100, SEMARANG '
                              'TENGAH 12420',
@@ -76,5 +76,4 @@ class ModelTests(TestCase):
             location=sample_location()
         )
 
-        self.assertEqual(str(destination), destination.customer_name + ' - '
-                         + destination.customer_address)
+        self.assertEqual(str(customer), customer.customer_name)

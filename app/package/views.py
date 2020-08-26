@@ -1,6 +1,6 @@
 from rest_framework import viewsets, mixins
 
-from core.models import Location, Organization
+from core.models import Location, Organization, Customer
 
 from package import serializers
 
@@ -27,3 +27,11 @@ class OrganizationViewSet(viewsets.GenericViewSet,
     def perform_create(self, serializer):
         """"Create a new organization"""
         serializer.save()
+
+
+class CustomerViewSet(viewsets.GenericViewSet,
+                      mixins.ListModelMixin,
+                      mixins.CreateModelMixin):
+    """Manage customers in the database"""
+    queryset = Customer.objects.all()
+    serializer_class = serializers.CustomerSerializer

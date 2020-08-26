@@ -40,7 +40,7 @@ class LocationsApiTest(TestCase):
         self.assertTrue(exists)
 
     def test_create_location_invalid(self):
-        """Test creating a location"""
+        """Test creating a location with invalid parameter"""
         payload = {'name': '',
                    'code': 'Hub Jakarta SelatanHub Jakarta Selatan Selatan',
                    'type': 'AgentAgentAgentAgentAgent'}

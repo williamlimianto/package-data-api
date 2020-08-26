@@ -35,7 +35,7 @@ class OrganizationApiTest(TestCase):
         self.assertTrue(exists)
 
     def test_create_organization_invalid(self):
-        """Test creating a organization"""
+        """Test creating a organization with invalid parameter"""
         payload = {'name': ''}
         res = self.client.post(ORGANIZATIONS_URL, payload)
 

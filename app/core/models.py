@@ -59,8 +59,9 @@ class Organization(models.Model):
         return self.name
 
 
-class Destination(models.Model):
-    """Destination to be used for package data"""
+class Customer(models.Model):
+    """Customer to be used for package data"""
+    customer_id = models.AutoField(primary_key=True)
     customer_name = models.CharField(max_length=100)
     customer_address = models.CharField(max_length=255)
     customer_email = models.EmailField(max_length=255)
@@ -80,4 +81,4 @@ class Destination(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.customer_name + ' - ' + self.customer_address
+        return self.customer_name
